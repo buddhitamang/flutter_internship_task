@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import '../Model/cart_model.dart';
+import '../provider/cart_provider.dart';
 import '../services/api_services.dart';
 
 
@@ -21,8 +21,8 @@ class CartPage extends StatelessWidget {
 
             leading:  Image.network(
               product.image,
-              width: 150, // Set the width of the image
-              height: 150, // Set the height of the image
+              width: 150,
+              height: 150,
             ),
             title: Text(product.title),
             subtitle: Text('\$${product.price}'),
