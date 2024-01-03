@@ -62,49 +62,48 @@ class _SearchPageState extends State<SearchPage> {
           ? Center(
               child: Text('No results found'),
             )
-          : GestureDetector(
-              onTap: () {
-
-
-              },
-              child: ListView.builder(
-                itemCount: displayedProducts.length,
-                itemBuilder: (context, index) {
-                  final product = displayedProducts[index];
-                  return ListTile(
-                    contentPadding: EdgeInsets.all(8.0),
-                    title: Row(
-                      children: [
-                        Image.network(
-                          product
-                              .image,
-                          height: 80.0,
-                          width: 80.0,
-                          fit: BoxFit.cover,
-                        ),
-                        SizedBox(width: 16.0),
-                        Expanded(
-                          child: Column(
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: [
-                              Text(
-                                product.title,
-                                overflow: TextOverflow.ellipsis,
-                                // Handle overflow with ellipsis
-                                maxLines: 2,
-                              ), // Limit the number of lines),
-                              SizedBox(height: 8.0),
-                              Text('\$${product.price.toStringAsFixed(2)}'),
-                            ],
-                          ),
-                        ),
-                      ],
-                    ),
-
-                  );
+          : ListView.builder(
+            itemCount: displayedProducts.length,
+            itemBuilder: (context, index) {
+              final product = displayedProducts[index];
+              return GestureDetector(
+                onTap: (){
+                  Navigator.push(context, MaterialPageRoute( builder: (context) => ProductDetailPage(product: product),));
                 },
-              ),
-            ),
+                child: ListTile(
+                  contentPadding: EdgeInsets.all(8.0),
+                  title: Row(
+                    children: [
+                      Image.network(
+                        product
+                            .image,
+                        height: 80.0,
+                        width: 80.0,
+                        fit: BoxFit.cover,
+                      ),
+                      SizedBox(width: 16.0),
+                      Expanded(
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            Text(
+                              product.title,
+                              overflow: TextOverflow.ellipsis,
+                              // Handle overflow with ellipsis
+                              maxLines: 2,
+                            ), // Limit the number of lines),
+                            SizedBox(height: 8.0),
+                            Text('\$${product.price.toStringAsFixed(2)}'),
+                          ],
+                        ),
+                      ),
+                    ],
+                  ),
+
+                ),
+              );
+            },
+          ),
     );
   }
 }
