@@ -1,16 +1,16 @@
 import 'package:flutter/material.dart';
 import 'package:online_store/pages/product_details_page.dart';
-import '../services/api_search_services.dart';
+import '../Model/product.dart';
 import '../services/api_services.dart'; // Import your ApiService
 
 class SearchPage extends StatefulWidget {
-  get product => null;
 
   @override
   State<SearchPage> createState() => _SearchPageState();
 }
 
 class _SearchPageState extends State<SearchPage> {
+
   final ApiService apiService = ApiService('https://fakestoreapi.com/products');
   int _currentIndex = 0;
   List<Product> displayedProducts = [];
@@ -18,9 +18,9 @@ class _SearchPageState extends State<SearchPage> {
 
   TextEditingController _searchController = TextEditingController();
 
+
   void _searchProducts(String query) async {
     if (query.isEmpty) {
-      // If the search query is empty, reset the displayed products
       setState(() {
         displayedProducts = [];
       });
@@ -36,6 +36,7 @@ class _SearchPageState extends State<SearchPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: Colors.grey.shade50,
       appBar: AppBar(
         title: Row(
           children: [
@@ -63,12 +64,8 @@ class _SearchPageState extends State<SearchPage> {
             )
           : GestureDetector(
               onTap: () {
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(
-                      builder: (context) =>
-                          ProductDetailPage(product: widget.product,)),
-                );
+
+
               },
               child: ListView.builder(
                 itemCount: displayedProducts.length,
@@ -80,7 +77,7 @@ class _SearchPageState extends State<SearchPage> {
                       children: [
                         Image.network(
                           product
-                              .image, // Assuming Product has an 'image' property
+                              .image,
                           height: 80.0,
                           width: 80.0,
                           fit: BoxFit.cover,
@@ -103,12 +100,11 @@ class _SearchPageState extends State<SearchPage> {
                         ),
                       ],
                     ),
-                    // Add more details or customize as needed
+
                   );
                 },
               ),
             ),
-      // ... rest of the code ...
     );
   }
 }
