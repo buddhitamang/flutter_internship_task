@@ -33,10 +33,10 @@ class MyDrawer extends StatelessWidget {
             title: Text('Settings'),
             onTap: () {
 
-              Navigator.pop(context); // Close the drawer
+              Navigator.pop(context);
             },
           ),
-          // Add more ListTiles or other components as needed
+
         ],
       ),
     );
