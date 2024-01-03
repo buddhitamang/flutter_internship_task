@@ -2,8 +2,11 @@
 import 'dart:convert';
 import 'package:http/http.dart' as http;
 
+import '../Model/product.dart';
+
 class ApiService {
   final String apiUrl;
+
 
   ApiService(this.apiUrl);
 
@@ -17,20 +20,14 @@ class ApiService {
       throw Exception('Failed to load products');
     }
   }
-}
 
-class Product {
-  final String image;
-  final double price;
-  final String description;
-
-  Product({required this.image, required this.price, required this.description});
-
-  factory Product.fromJson(Map<String, dynamic> json) {
-    return Product(
-      image: json['image'],
-      price: json['price'].toDouble(),
-      description: json['description'],
-    );
+  Future<List<Product>> searchProducts(String query) async {
+    final List<Product> allProducts = await fetchProducts();
+    final List<Product> searchResults = allProducts
+        .where((product) => product.title.toLowerCase().contains(query.toLowerCase()))
+        .toList();
+    return searchResults;
   }
 }
+
+
