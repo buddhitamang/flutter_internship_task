@@ -1,7 +1,7 @@
 // product_detail_page.dart
 
 import 'package:flutter/material.dart';
-import '../services/api_services.dart';
+import '../Model/product.dart';
 
 class ProductDetailPage extends StatelessWidget {
   final Product product;
@@ -21,8 +21,8 @@ class ProductDetailPage extends StatelessWidget {
           children: [
             Image.network(
               product.image,
-              width: 150, // Set the width of the image
-              height: 150, // Set the height of the image
+              width: 150,
+              height: 150,
             ),
             SizedBox(height: 16.0),
             Text(
@@ -40,7 +40,7 @@ class ProductDetailPage extends StatelessWidget {
               'Price: \$${product.price.toStringAsFixed(2)}',
               style: TextStyle(fontSize: 16.0,fontWeight: FontWeight.bold),
             ),
-            // Add more details or widgets as needed
+
           ],
         ),
       ),
