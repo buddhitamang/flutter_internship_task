@@ -17,8 +17,12 @@ class CartProvider extends ChangeNotifier {
     notifyListeners();
   }
 
-  void clearCart() {
-    _cartItems.clear();
-    notifyListeners();
+  // void clearCart() {
+  //   _cartItems.clear();
+  //   notifyListeners();
+  // }
+  bool isProductInCart(Product product) {
+    return _cartItems.any((cartProduct) => cartProduct.title == product.title);
   }
+
 }
